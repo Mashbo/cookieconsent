@@ -19,8 +19,8 @@ const exp = Object.assign({}, common, {
           use : [
             "style-loader", // creates style nodes from JS strings
             "css-loader", // translates CSS into CommonJS
-            "sass-loader", // compiles Sass to CSS, using Node Sass by default
-            "postcss-loader"
+            "postcss-loader", // process CSS with PostCSS
+            "sass-loader" // compiles Sass to CSS, using Node Sass by default
           ]
         }
       ]
