@@ -18,30 +18,31 @@
 }
 
 .cc-revoke {
-  z-index: 9999;
-}
-
-.cc-window.cc-static {
-  position: static;
-}
-
-/* 2 basic types of window - floating / banner */
-.cc-window.cc-floating {
-  padding: 2em;
-  max-width: 24em; /* 1em == 16px therefore 24em == 384px */
-  flex-direction: column;
-}
-.cc-window.cc-banner {
-  padding: 1em 1.8em;
-  width: 100%;
-  flex-direction: row;
-}
-
-.cc-revoke {
   padding: 0.5em;
+  z-index: 9999;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
-.cc-revoke:hover {
-  text-decoration: underline;
+
+.cc-window {
+  &.cc-static {
+    position: static;
+  }
+
+  /* 2 basic types of window - floating / banner */
+  &.cc-floating {
+    padding: 2em;
+    max-width: 24em; /* 1em == 16px therefore 24em == 384px */
+    flex-direction: column;
+  }
+
+  &.cc-banner {
+    padding: 1em 1.8em;
+    width: 100%;
+    flex-direction: row;
+  }
 }
 
 .cc-header {
@@ -62,13 +63,15 @@
   display: inline-block;
   padding: 0.2em;
   text-decoration: underline;
-}
-.cc-link:hover {
-  opacity: 1;
-}
-.cc-link:active,
-.cc-link:visited {
-  color: initial;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:active,
+  &:visited {
+    color: initial;
+  }
 }
 
 .cc-btn {
@@ -82,15 +85,20 @@
   white-space: nowrap;
 }
 
-.cc-highlight .cc-btn:first-child {
-  background-color: transparent;
-  border-color: transparent;
-}
+.cc-highlight {
+  .cc-btn {
+    &:first-child {
+      background-color: transparent;
+      border-color: transparent;
 
-.cc-highlight .cc-btn:first-child:hover,
-.cc-highlight .cc-btn:first-child:focus {
-  background-color: transparent;
-  text-decoration: underline;
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        text-decoration: underline;
+      }
+    }
+  }
+
 }
 
 .cc-close {
@@ -105,8 +113,9 @@
   /*  - we want it to be a square, because it's acting as an icon */
   /*  - setting the line height normalizes the height */
   line-height: 0.75;
-}
-.cc-close:hover,
-.cc-close:focus {
-  opacity: 1;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
 }

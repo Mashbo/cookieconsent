@@ -19,7 +19,29 @@ const exp = Object.assign({}, common, {
           use : [
             "style-loader", // creates style nodes from JS strings
             "css-loader", // translates CSS into CommonJS
-            "postcss-loader", // process CSS with PostCSS
+            {
+              loader: "postcss-loader", // process CSS with PostCSS
+              options: {
+                postcssOptions: {
+                  plugins: [
+                    "postcss-flexbugs-fixes",
+                    [
+                      "postcss-preset-env",
+                      {
+                        "autoprefixer": {
+                          "flexbox": "no-2009",
+                          "grid": "autoplace"
+                        },
+                        "stage": 3,
+                        "features": {
+                          "custom-properties": false
+                        }
+                      },
+                    ],
+                  ],
+                },
+              }
+            },
             "sass-loader" // compiles Sass to CSS, using Node Sass by default
           ]
         }
