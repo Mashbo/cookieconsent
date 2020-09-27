@@ -328,10 +328,9 @@ export default class Popup extends Base {
 
   getPopupClasses() {
     const opts = this.options
-    let positionStyle =
-      opts.position == 'top' || opts.position == 'bottom'
-        ? 'banner'
-        : 'floating'
+    let positionStyle = opts.position === 'top' || opts.position === 'bottom'
+      ? 'banner'
+      : 'floating'
 
     if (isMobile() && opts.mobileForceFloat) {
       positionStyle = 'floating'
@@ -490,7 +489,6 @@ export default class Popup extends Base {
     }
     return isValid
   }
-
 
   getEventPath( event ) {
     const path = event.composedPath ? event.composedPath() : (function ( arr, element ) {
