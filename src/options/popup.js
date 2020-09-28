@@ -24,28 +24,50 @@ export default {
     secure: false,
     // Sets the "sameSite" attribute of the `cookieconsent_status` cookie
     // - Allowed attributes are "Lax", "Strict" and "None" ("None" is only allowed with the secure flag)
-    sameSite: 'Lax'
+    sameSite: 'Lax',
   },
 
   // each item defines the inner text for the element that it references
   content: {
-    header : 'Cookies used on the website!',
+    header: 'Cookies used on the website!',
     message: 'This website uses cookies to ensure you get the best experience on our website.',
-    dismiss: 'Got it!',
-    allow  : 'Allow cookies',
-    deny   : 'Decline',
-    link   : 'Learn more',
-    href   : 'https://www.cookiesandyou.com',
-    close  : '&#x274c',
-    target : '_blank',
-    policy : 'Cookie Policy',
-    save   : 'Save',
-    info   : '^',
-    'info-uncategorized': 'This is the category for cookies that don\'t fit any of the other categories',
-    'info-essential': 'This is the category for cookies that are essential',
-    'info-personalization':  'This is the category for cookies that are used for personalization',
-    'info-analytics': 'This is the category for tracking cookies',
-    'info-marketing': 'This is the category for marketing cookies'
+    policy: 'Cookie Policy',
+    link: {
+      text: 'Learn more',
+      title: 'Learn more about cookies',
+      href: 'https://www.cookiesandyou.com',
+      target: '_blank'
+    },
+    buttons: {
+      allow: 'Allow cookies',
+      close: '&#x274c',
+      deny: 'Decline',
+      dismiss: 'Got it!',
+      save: 'Save',
+      tooltip: '^'
+    },
+    categories: {
+      uncategorized: {
+        label: 'Uncategorized',
+        description: 'This is the category for cookies that don\'t fit any of the other categories'
+      },
+      essential: {
+        label: 'Essential',
+        description: 'This is the category for cookies that are essential'
+      },
+      personalization: {
+        label: 'Personalization',
+        description: 'This is the category for cookies that are used for personalization'
+      },
+      analytics: {
+        label: 'Analytics',
+        description: 'This is the category for tracking cookies'
+      },
+      marketing: {
+        label: 'Marketing',
+        description: 'This is the category for marketing cookies'
+      },
+    },
   },
 
   // This is the HTML for the elements above. The string {{header}} will be replaced with the equivalent text below.
@@ -58,36 +80,36 @@ export default {
     message:
       '<span id="cookieconsent:desc" class="cc-message">{{message}}</span>',
     messagelink:
-      '<span id="cookieconsent:desc" class="cc-message">{{message}} <a aria-label="learn more about cookies" role=button tabindex="0" class="cc-link" href="{{href}}" rel="noopener noreferrer nofollow" target="{{target}}">{{link}}</a></span>',
+      '<span id="cookieconsent:desc" class="cc-message">{{message}} <a aria-label="learn more about cookies" role=button tabindex="0" class="cc-link" href="{{link.href}}" rel="noopener noreferrer nofollow" target="{{link.target}}" title="{{link.title}}">{{link.text}}</a></span>',
     dismiss:
-      `<a aria-label="dismiss cookie message" role=button tabindex="0" class="cc-btn cc-${statusDismiss}">{{dismiss}}</a>`,
+      `<a aria-label="dismiss cookie message" role=button tabindex="0" class="cc-btn cc-${statusDismiss}">{{buttons.dismiss}}</a>`,
     allow:
-      `<a aria-label="allow cookies" role=button tabindex="0" class="cc-btn cc-${statusAllow}">{{allow}}</a>`,
+      `<a aria-label="allow cookies" role=button tabindex="0" class="cc-btn cc-${statusAllow}">{{buttons.allow}}</a>`,
     deny:
-      `<a aria-label="deny cookies" role=button tabindex="0" class="cc-btn cc-${statusDeny}">{{deny}}</a>`,
+      `<a aria-label="deny cookies" role=button tabindex="0" class="cc-btn cc-${statusDeny}">{{buttons.deny}}</a>`,
     link:
-      '<a aria-label="learn more about cookies" role=button tabindex="0" class="cc-link" href="{{href}}" rel="noopener noreferrer nofollow" target="{{target}}">{{link}}</a>',
+      '<a aria-label="learn more about cookies" role=button tabindex="0" class="cc-link" href="{{link.href}}" rel="noopener noreferrer nofollow" target="{{link.target}}" title="{{link.title}}">{{link.text}}</a>',
     close:
-      '<span aria-label="dismiss cookie message" role=button tabindex="0" class="cc-close">{{close}}</span>',
+      '<span aria-label="dismiss cookie message" role=button tabindex="0" class="cc-close">{{buttons.close}}</span>',
     categories: '<ul class="cc-categories">' +
       categories.map( ( category, index ) => {
         let categoryLowerCase = category.toLowerCase();
         return `<li class="cc-category">
           <button class="cc-btn" tabindex="0">
-            <input type="checkbox" name="${category}"/>
+            <input type="checkbox" name="${category}" />
             <span class="cc-btn-checkbox"></span>
-            ${category.charAt(0).toUpperCase() + categoryLowerCase.slice(1)}
+            {{categories.${categoryLowerCase}.label}}
           </button>
           <button class="cc-btn cc-info" aria-label="${category} Definition Button" tabindex="${index + 1}">
-            {{info}}
+            {{buttons.tooltip}}
           </button>
           <div class="cc-tooltip">
-            <p>{{info-${categoryLowerCase}}}</p>
+            <p>{{categories.${categoryLowerCase}.description}}</p>
           </div>
         </li>`
       }).join("")
       + '</ul>',
-    save: `<button class="cc-btn cc-save">{{save}}</button>`
+    save: `<button class="cc-btn cc-save">{{buttons.save}}</button>`
     //compliance: compliance is also an element, but it is generated by the application, depending on `type` below
   },
 

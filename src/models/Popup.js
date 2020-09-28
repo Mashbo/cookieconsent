@@ -13,6 +13,7 @@ import {
   getCookie,
   hash,
   interpolateString,
+  flattenObject,
   isMobile,
   isPlainObject,
   isValidStatus,
@@ -362,6 +363,7 @@ export default class Popup extends Base {
   getPopupInnerMarkup() {
     const interpolated = {}
     const opts = this.options
+    const content = flattenObject(opts.content)
 
     // removes link if showLink is false
     if (!opts.showLink) {
@@ -373,7 +375,7 @@ export default class Popup extends Base {
       interpolated[prop] = interpolateString(
         opts.elements[prop],
         name => {
-          const str = opts.content[name]
+          const str = content[name]
           return name && typeof str == 'string' && str.length ? str : ''
         }
       )
@@ -579,7 +581,7 @@ export default class Popup extends Base {
 
   applyRevokeButton() {
     // revokable is true if advanced compliance is selected
-    if (this.options.type != 'info' && this.options.regionalLaw == true) this.options.revokable = true
+    if (this.options.type !== 'info' && this.options.regionalLaw === true) this.options.revokable = true
     // animateRevokable false for mobile devices
     if (isMobile()) this.options.animateRevokable = false
 

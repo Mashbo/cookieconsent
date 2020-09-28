@@ -44,6 +44,52 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Set constants
 - Event emitter added
 - Removed utilities that have built-in JS functionality solutions
+- Content options mostly refactored into nested properties with flattened
+  text replacers `{{buttons.allow}}` and so on.  
+  **Default Content options:**
+  ```
+  content: {
+    header: 'Cookies used on the website!',
+    message: 'This website uses cookies to ensure you get the best experience on our website.',
+    policy: 'Cookie Policy',
+    link: {
+      text: 'Learn more',
+      title: 'Learn more about cookies',
+      href: 'https://www.cookiesandyou.com',
+      target: '_blank'
+    },
+    buttons: {
+      allow: 'Allow cookies',
+      close: '&#x274c',
+      deny: 'Decline',
+      dismiss: 'Got it!',
+      save: 'Save',
+      tooltip: '^'
+    },
+    categories: {
+      uncategorized: {
+        label: 'Uncategorized',
+        description: 'This is the category for cookies that don\'t fit any of the other categories'
+      },
+      essential: {
+        label: 'Essential',
+        description: 'This is the category for cookies that are essential'
+      },
+      personalization: {
+        label: 'Personalization',
+        description: 'This is the category for cookies that are used for personalization'
+      },
+      analytics: {
+        label: 'Analytics',
+        description: 'This is the category for tracking cookies'
+      },
+      marketing: {
+        label: 'Marketing',
+        description: 'This is the category for marketing cookies'
+      },
+    },
+  }
+  ```
 
 ### Deprecated:
 - Callbacks: `onInitialise`, `onPopupOpen`, `onPopupClose`, `onStatusChange`, `onRevokeChoice`

@@ -6,7 +6,24 @@ export const setCookie = cookie.setCookie
 
 
 export const interpolateString = ( str, callback ) =>
-  str.replace( /{{([a-z][a-z0-9\-_]*)}}/gi , ( matches, replaced ) => callback( replaced ) || '')
+  str.replace( /{{([a-z][a-z0-9\-_.]*)}}/gi , ( matches, replaced ) => callback( replaced ) || '')
+
+// used to flatten nested properties of an object {a: {b: {c: …}}} => 'a.b.c'
+export const flattenObject = (obj, roots = [], sep = '.') => Object
+  // find props of given object
+  .keys(obj)
+  // return an object by iterating props
+  .reduce((memo, prop) => Object.assign(
+    // create a new object
+    {},
+    // include previously returned object
+    memo,
+    Object.prototype.toString.call(obj[prop]) === '[object Object]'
+      // keep working if value is an object
+      ? flattenObject(obj[prop], roots.concat([prop]))
+      // include current prop and value and prefix prop with the roots
+      : {[roots.concat([prop]).join(sep)]: obj[prop]}
+  ), {})
 
 // only used for throttling the 'mousemove' event (used for animating the revoke button when `animateRevokable` is true)
 export const throttle = (callback, limit) => {
@@ -66,7 +83,7 @@ const loopProperties = overwrites => (obj, [key, value]) => {
     if ( overwrites.hasOwnProperty( key ) ) {
       obj[ key ] = overwrites[ key ]
     }else {
-      obj[ key ] = value 
+      obj[ key ] = value
     }
   }
   return obj

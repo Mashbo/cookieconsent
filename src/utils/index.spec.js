@@ -4,6 +4,7 @@ import {
   getCookie,
   setCookie,
   interpolateString,
+  flattenObject,
   throttle,
   hash,
   normalizeHex,
@@ -24,6 +25,7 @@ describe( "Utils::Index", () => {
     test( "getCookie", () => expect( getCookie ).toBeInstanceOf( Function ) )
     test( "setCookie", () => expect( setCookie ).toBeInstanceOf( Function ) )
     test( "interpolateString", () => expect( interpolateString ).toBeInstanceOf( Function ) )
+    test( "flattenObject", () => expect( flattenObject ).toBeInstanceOf( Function ) )
     test( "throttle", () => expect( throttle ).toBeInstanceOf( Function ) )
     test( "hash", () => expect( hash ).toBeInstanceOf( Function ) )
     test( "normalizeHex", () => expect( normalizeHex ).toBeInstanceOf( Function ) )
