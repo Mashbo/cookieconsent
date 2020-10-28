@@ -129,9 +129,9 @@ export default {
   compliance: {
     info: '<div class="cc-compliance">{{dismiss}}</div>',
     'opt-in':
-      '<div class="cc-compliance cc-highlight">{{dismiss}}{{allow}}{{customize}}</div>',
+      '<div class="cc-compliance cc-highlight">{{deny}}{{allow}}{{customize}}</div>',
     'opt-out':
-      '<div class="cc-compliance cc-highlight">{{dismiss}}{{deny}}</div>',
+      '<div class="cc-compliance cc-highlight">{{deny}}{{deny}}</div>',
     categories: '<div class="form">{{categories}}{{save}}</div>'
   },
 
