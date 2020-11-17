@@ -175,3 +175,8 @@ source code.
 [cl]: https://www.osano.com/features/consent-management?utm_campaign=Open%20Source%20Cookie%20Consent&utm_source=github
 [ti]: https://img.shields.io/twitter/url/https/osanoatx.svg?style=social
 [tl]: https://twitter.com/osano
+
+
+## Custom Work (Mashbo)
+
+In webpack.prod.js, amend the minify config to allow console log, debugger and dont mangle for prod. then run `yarn build && cp build/cookieconsent.min.js ../../hub-of-hope/hub-of-hope/public/js/cookieconsent.min.js`, change directories to where it is going. For actual production, change webpack.prod.js back.
