@@ -194,10 +194,11 @@ export default class Popup extends Base {
         this.element.parentNode.style.maxHeight = ''
       }
 
-      this.afterTransition = () => this.afterFadeOut(this.element)
-      this.element.addEventListener(this.transitionEnd, this.afterTransition)
+      this.afterTransition = () => this.afterFadeOut(this.element);
+      this.element.addEventListener(this.transitionEnd, this.afterTransition) // This just doesnt work, this.transitionEnd doesnt exist and the event isn't emitted anyway even if it did exist.
 
       this.element.classList.add('cc-invisible')
+      this.afterTransition(); // custom: Added as line a few above doesnt work. This Removes the transition unfortunately.
     }
   }
 
